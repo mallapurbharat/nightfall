@@ -92,6 +92,8 @@ jobs:
         run: |
           docker stop $(docker ps -a -q)
           docker rm $(docker ps -a -q)
+          sync
+          sudo sh -c 'echo 3 >/proc/sys/vm/drop_caches'
           free -h
           df -h
           du -h -d 1 zkp/code/gm17
