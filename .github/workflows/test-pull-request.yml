@@ -97,6 +97,7 @@ jobs:
           free -h
           df -h
           du -h -d 1 zkp/code/gm17
+          du -h /mnt
       - name: Rename mimc docker-compose yml file
         run: mv docker-compose.override.mimc.yml docker-compose.override.yml
       - name: Setup ganache container, deploy zkp contracts
