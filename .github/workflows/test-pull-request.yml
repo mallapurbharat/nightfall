@@ -94,11 +94,6 @@ jobs:
           docker rm $(docker ps -a -q)
           sync
           sudo sh -c 'echo 3 >/proc/sys/vm/drop_caches'
-          sudo swapoff -a
-          sudo swapon -a
-          sudo swapon 
-          swapon --show
-          grep SwapTotal /proc/meminfo
           free -h
           df -h
           du -h -d 1 zkp/code/gm17
@@ -111,7 +106,7 @@ jobs:
       - name: Start merkle-tree microservice
         run: docker-compose up -d merkle-tree
       - name: Run zkp unit tests
-        run: docker-compose run --rm zkp npm test
+        run: docker-compose run --rm zkp node_modules/jest/bin/jest.js --detectOpenHandles ./__tests__/consolidation-mimc.js
       - name: debug
         if: failure()
         run: |
