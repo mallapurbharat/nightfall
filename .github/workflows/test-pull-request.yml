@@ -115,6 +115,8 @@ jobs:
       - name: debug
         if: failure()
         run: |
+          docker-compose ps
+          docker ps -a
           free -h
           df -h
           cd /mnt
