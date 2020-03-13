@@ -102,8 +102,6 @@ jobs:
           free -h
           df -h
           du -h -d 1 zkp/code/gm17
-          sudo du -h /mnt
-          sudo rm -dr /mnt/lost+found
       - name: Rename mimc docker-compose yml file
         run: mv docker-compose.override.mimc.yml docker-compose.override.yml
       - name: Setup ganache container, deploy zkp contracts
@@ -119,6 +117,9 @@ jobs:
         run: |
           free -h
           df -h
+          cd /mnt
+          sudo ls
+          sudo du -h
 
   integration-test-sha:
     name: Run integration test (HASH_TYPE = sha)
